@@ -17,13 +17,13 @@ Este projeto é um script em Node.js que gera um PDF contendo cartões de visita
 - Clone este repositório:
 
 ```
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/mathehm/qrcode-card-generator.git
 ```
 
 - Navegue até o diretório do projeto:
 
 ```
-cd seu-repositorio
+cd qrcode-card-generator
 ```
 
 - Instale as dependências:
