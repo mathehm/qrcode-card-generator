@@ -12,7 +12,8 @@ function getBase64Image(imgPath) {
 const logoBase64 = getBase64Image('./logo.png');
 
 // Função para gerar QR Code
-async function generateQRCode(text) {
+async function generateQRCode(number) {
+  const text = `https://www.igrejacaminho.com.br/festa-do-milho?code=${number}`;
   try {
     return await QRCode.toDataURL(text);
   } catch (err) {
@@ -23,13 +24,12 @@ async function generateQRCode(text) {
 // Função para criar um cartão de visita com QR Code e logo
 async function createBusinessCard(doc, x, y, number) {
   const qrCodeDataUrl = await generateQRCode(number);
-  doc.setFontSize(12);
   doc.setFont('helvetica', 'bold'); // Define a fonte como negrito
-  doc.text('Igreja do Caminho', x + 8, y + 30);
-  doc.addImage(logoBase64, 'PNG', x + 20, y + 10, 15, 15); // Adiciona a logo
-  doc.addImage(qrCodeDataUrl, 'PNG', x + 45, y + 0, 45, 45); // Adiciona o QR Code
-  doc.setFontSize(16);
-  doc.text(`${number}`, x + 62, y + 45);
+  doc.addImage(qrCodeDataUrl, 'PNG', x + 52, y + 11, 31, 31); // Adiciona o QR Code
+  doc.addImage(logoBase64, 'PNG', x, y, 90, 50); // Adiciona a logo
+  doc.setFontSize(20); // Define o tamanho da fonte
+  doc.setTextColor(255, 255, 255); // Define a cor do texto como branco
+  doc.text(`${number}`, x + 60, y + 10);
   doc.rect(x, y, 90, 50); // Desenha borda do cartão (90mm x 50mm)
 }
 
@@ -41,7 +41,7 @@ async function generateBusinessCards() {
   const cardHeight = 50;
   const marginLeft = 15;
   const marginTop = 20;
-  const totalCards = 1000;
+  const totalCards = 10;
 
   let cardIndex = 1;
 
